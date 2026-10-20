@@ -47,6 +47,15 @@ export default class CartDao{
         }
     }
 
+    replaceProducts = async (cid, products) =>{
+        try {
+            return await cartModel.findByIdAndUpdate(cid, { $set: { products } }, { new: true });
+        } catch (error) {
+            console.error(error.message);
+            return null;
+        }
+    }
+
     deleteCart = async (cid) =>{
         try {
             return await cartModel.deleteOne({ _id: cid });

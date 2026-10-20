@@ -1,9 +1,12 @@
 import jwt from 'jsonwebtoken';
 
-const PRIVATE_KEY = "secretKey";
+// Se lee en cada uso (y no al importar el módulo) porque dotenv se carga después de los imports
+const getPrivateKey = () => process.env.SECRET_KEY;
 
 const generateToken = (user) =>{
-    const token = jwt.sign({ user }, PRIVATE_KEY, { expiresIn: '1h' });
+    // Solo los datos necesarios: nunca incluir la contraseña (aunque esté hasheada) en el token
+    const payload = { _id: user._id, firstName: user.firstName, email: user.email, role: user.role, cart: user.cart };
+    const token = jwt.sign({ user: payload }, getPrivateKey(), { expiresIn: '1h' });
     return token;
 };
 
@@ -17,7 +20,7 @@ const authToken = (req, res, next) =>{
     };
 
     const token = authHeader.split(' ')[1]; // el split es para sacar la palabra Bearer
-    jwt.verify(token, PRIVATE_KEY, (error, credentials) =>{
+    jwt.verify(token, getPrivateKey(), (error, credentials) =>{
         if(error){
             return res.status(403).send({
                 error: "Unauthorized"

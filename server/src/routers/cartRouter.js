@@ -22,6 +22,9 @@ router.put('/:cid/product/:pid', cartController.updateQuantityCart);
 // -Add product to cart
 router.post('/:cid/product/:pid', passport.authenticate("jwt", { session: false }), authorization(['User', 'Premium']), cartController.addToCart);
 
+// -Replace all products in the cart (sync from client)
+router.put('/:cid', passport.authenticate("jwt", { session: false }), cartController.replaceCartProducts);
+
 // -Delete cart
 router.delete('/:cid', cartController.deleteCart);
 
