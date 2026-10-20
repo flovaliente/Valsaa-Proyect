@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Home from './components/home/Home';
@@ -11,6 +11,14 @@ import Register from './components/auth/Register';
 import OrderSuccess from './components/orderSuccess/OrderSuccess';
 import { ShopComponentContext } from './context/ShopContext';
 import { AuthProvider } from './context/AuthContext';
+
+// El carrito tiene su propia barra fija abajo (total y botones), así que no lleva footer, igual que en el sitio original
+const PAGES_WITHOUT_FOOTER = ['/cart'];
+
+const ConditionalFooter = () => {
+  const { pathname } = useLocation();
+  return PAGES_WITHOUT_FOOTER.includes(pathname) ? null : <Footer />;
+};
 
 function App() {
 
@@ -32,7 +40,7 @@ function App() {
               <Route path='/order' element={<OrderSuccess />} />
             </Routes>
           </main>
-          <Footer />
+          <ConditionalFooter />
         </BrowserRouter>
       </ShopComponentContext>
     </AuthProvider>
