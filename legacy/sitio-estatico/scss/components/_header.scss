@@ -1,0 +1,70 @@
+header{
+    nav{
+        position: relative;
+        background-color: #F8F8F8;
+        border-bottom: 1px solid #ddd;
+        padding: 0 !important; //Puse important para sacarle el padding que tenia de bootstrap
+        .container-fluid{
+            .navbar-toggler{
+                display: none;
+            }
+            .nav-bar-icons{
+                position: absolute;
+                top: 10px; /* Ajustar la posición hacia arriba */
+                right: 15px; /* Alinea a la derecha */
+                display: flex;
+                gap: 20px;
+                .icon{
+                    text-decoration: none;
+                    color: nth($font-color, 1);
+                    
+                    margin-right: 15px;
+                    &:hover{
+                        color: nth($font-color-hover, 1);
+                    }
+                    i{
+                        font-size: 15px;
+                    }
+                }
+            }
+            .nav-bar-brand{
+                position: absolute;
+                left: 50%;
+                transform: translate(-50%, 1%);
+                a{
+                    img{
+                        width: 240px;
+                    }
+                }
+            }
+            .nav-bar-bottom{
+                text-align: center;
+                margin-top: 90px;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                ul{
+                    list-style: none;
+                    display: inline-flex;
+                    gap: 20px;
+                    padding: 0;
+                    margin: 5px;
+                    margin-top: 1.5rem;
+                    li{
+                        display: inline;
+                        a{
+                            text-decoration: none;
+                            color: nth($font-color, 1);
+                            font-size: 13px;
+                            font-weight: normal;
+                            transition: color 0.3s;
+                            &:hover{
+                                color: nth($font-color-hover, 1);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

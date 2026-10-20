@@ -1,0 +1,288 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Para que el padding y el borde están incluidos en el ancho y el alto especificados*/
+}
+  
+body {
+    color: #606c76;
+    font-family: "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.01em;
+    -webkit-text-size-adjust: 100%;
+}
+  
+hr {
+    background-color: rgba(174, 174, 174, 0.3529411765);
+    border: none; /* Elimina el borde predeterminado */
+    height: 0.5px; /* Ajusta el grosor */
+}
+  
+a {
+    text-decoration: none;
+    color: #000000;
+}
+  
+a:focus, a:hover {
+    color: #7a7a7a;
+    transition: 0.5s;
+}
+  
+dl, ol, ul {
+    list-style: none;
+    margin-top: 0;
+    padding-left: 0;
+}
+  
+dl ul, ol ul, ul dl, ul ol, ul ul {
+    font-size: 90%;
+    margin: 1.5rem 0 1.5rem 3rem;
+}
+  
+ul {
+    list-style: circle inside;
+    list-style: none;
+}
+  
+li {
+    line-height: inherit;
+    margin: 0;
+}
+  
+h3 {
+    text-decoration: none;
+}
+  
+input {
+    padding: 3px;
+}
+
+/*---BUTTONS---*/
+#btn-submit {
+    margin-top: 10px; /* Espacio entre el campo de correo y el botón */
+    width: 100%; /* Para que el botón ocupe todo el ancho */
+    padding: 10px;
+    background-color: black;
+    color: white;
+    border: none;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    font-size: small;
+}
+  
+.btn-secondary {
+    padding: 8px;
+    background-color: black;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 0;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    font-size: small;
+    align-items: center;
+    transition: all 0, 3s;
+}
+  
+.btn-secondary:hover {
+    background-color: rgb(57, 57, 57);
+    color: rgb(255, 255, 255);
+}
+
+/*---PRODUCTO---*/
+.product-page {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 60px;
+}
+.product-page .text-with-border {
+    border-bottom: 1px solid rgba(219, 219, 219, 0.6509803922); /* Aplica el borde inferior */
+    width: 100%;
+    margin: 30px 0;
+}
+.product-page .text-with-border a {
+    font-size: 13px;
+    display: inline-block;
+    text-decoration: none;
+    color: #222222;
+    padding-bottom: 5px;
+}
+.product-page .text-with-border a i {
+    padding-right: 10px;
+    font-size: 11px;
+}
+.product-page .text-with-border a:hover {
+    color: #595959;
+}
+.product-page .product-content {
+    display: flex;
+    gap: 20px;
+}
+.product-page .product-content .product-images {
+    display: flex;
+    flex-direction: row; /* Asegura que las miniaturas y la imagen principal estén en la misma fila */
+    gap: 10px;
+    align-items: flex-start;
+}
+.product-page .product-content .product-images .thumbnails {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.product-page .product-content .product-images .thumbnails img {
+    width: 100px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+}
+.product-page .product-content .product-images .main-image {
+    position: relative;
+    text-align: center;
+}
+.product-page .product-content .product-images .main-image img {
+    width: 100%;
+}
+.product-page .product-content .product-details {
+    flex: 1;
+    margin-left: 15px;
+    margin-top: 4px;
+    text-align: left;
+}
+.product-page .product-content .product-details h1 {
+    font-size: 24px;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    color: #202020;
+    font-weight: lighter;
+}
+.product-page .product-content .product-details .product-code {
+    font-size: 12px;
+    color: #666;
+    margin: 5px 0;
+}
+.product-page .product-content .product-details .price-section {
+    margin-top: 20px;
+    margin-left: 9px;
+    font-weight: bold;
+}
+.product-page .product-content .product-details .price-section .sim {
+    font-size: 15px;
+    color: #000;
+}
+.product-page .product-content .product-details .price-section .amount {
+    font-size: 20px;
+    color: #000;
+}
+.product-page .product-content .product-details .product-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 35px;
+    margin-bottom: 20px;
+}
+.product-page .product-content .product-details .product-options .sizes {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+.product-page .product-content .product-details .product-options .sizes label {
+    font-size: 12px;
+    font-weight: bold;
+    color: #333;
+}
+.product-page .product-content .product-details .product-options .sizes .size-options {
+    display: flex;
+    gap: 8px;
+}
+.product-page .product-content .product-details .product-options .sizes .size-options button {
+    width: 35px;
+    height: 37px;
+    border: 1px solid #e7e7e7;
+    background-color: white;
+    color: #333;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.product-page .product-content .product-details .product-options .sizes .size-options button:hover {
+    border: 1px solid black;
+}
+.product-page .product-content .product-details .product-options .actions {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin: 15px 0;
+}
+.product-page .product-content .product-details .product-options .actions button {
+    height: 50px; /* Altura uniforme para ambos botones */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px; /* Tamaño de fuente uniforme */
+    font-weight: lighter;
+    cursor: pointer;
+}
+.product-page .product-content .product-details .product-options .actions .btn {
+    padding: 0 40px;
+}
+.product-page .product-content .product-details .product-options .actions .wishlist-button {
+    padding: 0 14px;
+    background: none;
+    color: #555;
+    border: 1px solid #ccc;
+}
+.product-page .product-content .product-details .product-options .actions .wishlist-button:hover {
+    font-size: 16px;
+    padding: 0 13px;
+}
+.product-page .product-content .product-details .product-options .actions .quantity {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.product-page .product-content .product-details .product-options .actions .quantity select {
+    height: 50px;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 0;
+    outline: none;
+}
+.product-page .product-content .product-details .itau-button button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    color: #f36f21;
+    border: 1px solid #f36f21;
+    padding: 10px;
+    font-size: 13px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.product-page .product-content .product-details .itau-button button img {
+    margin-right: 10px;
+    height: 25px;
+}
+.product-page .product-content .product-details .itau-button button:hover {
+    background-color: rgba(255, 68, 0, 0.758);
+    color: white;
+}
+.product-page .product-content .product-details .shipping {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 20px;
+}
+.product-page .product-content .product-details .shipping .shipping-info {
+    font-size: 12px;
+    color: #333;
+}
+.product-page .product-content .product-details .shipping .shipping-info i {
+    padding-right: 8px;
+}

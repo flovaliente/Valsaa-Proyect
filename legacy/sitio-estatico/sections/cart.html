@@ -1,0 +1,181 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fontawesome.com/icons">
+    <link rel="stylesheet" href="../css/estilos.css">
+    <!-- KEYWORDS -->
+    <meta name="keywords" content="cart, Carrito, Pago, Itaú, Facturacion, Factura, Envío Envio, Pedido, Cupón, Descuento, Valsaa, ">
+    <!-- DESCRIPTION -->
+    <meta name="description" content="">
+    <!-- OPEN GRAPH -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Carrito | Valsaa">
+    <meta property="og:image" content="">
+    <meta property="og:url" content="">
+    <!-- TITLE -->
+    <title>Carrito | Valsaa</title>
+    <!-- FAVICON -->
+    <link rel="shortcut icon" href="../public/img/favicon.ico" type="image/x-icon">
+  </head>
+  <body>
+    
+    <header>
+      <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="nav-bar-icons">
+            <a href="#" class="icon"><i class="fas fa-search"></i></a>
+            <a href="#" class="icon"><i class="fas fa-user"></i></a>
+            <a href="./cart.html" class="icon"><i class="fas fa-shopping-cart"></i></a>
+          </div>
+          <div class="nav-bar-brand">
+            <a href="../index.html">
+              <img src="../public/img/logo.png" alt="Valsaa Logo" class="brand-logo">
+            </a>
+          </div>
+          <div class="nav-bar-bottom">
+            <ul class="nav-bar-menu">
+              <li><a href="./shop.html">Shop</a></li>
+              <li><a href="#">Rebajas</a></li>
+              <li><a href="#">Precios Especiales</a></li>
+              <li><a href="./locales.html">Locales</a></li>
+            </ul>
+          </div>
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Valsaa</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="./shop.html">Shop</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Rebajas</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Precios Especiales</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./locales.html">Locales</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="cart-container">
+        <div class="cart-data fact-data">
+          <h2>DATOS DE FACTURA</h2>
+          <ul class="cart-items">
+            <li class="cart-item">
+              <span class="tit">Nombre:</span>
+              <span class="val">Florencia Valiente</span>
+            </li>
+            <li class="cart-item">
+              <span class="tit">Documento:</span>
+              <span class="val">4.985.326-8</span>
+            </li>
+            <li class="cart-item">
+              <span class="tit">Dirección:</span>
+              <span class="val">Herrera 360</span>
+            </li>
+            <li class="cart-item">
+              <span class="tit">Teléfono:</span>
+              <span class="val">+589 98112587</span>
+            </li>
+            <li class="term-cond">
+              <i class="fa-solid fa-check"></i>
+              <span>Estoy de acuerdo con los Terminos y Condiciones</span>
+            </li>
+          </ul>
+        </div>
+        <div class="cart-data cart-details">
+          <h2>DETALLE DEL PEDIDO</h2>
+          <div class="cart-account">
+            <p>flovaliente143@gmail.com</p>
+            <a href="#">Cambiar cuenta</a>
+          </div>
+          <ul class="cart-items">
+            <li class="cart-item">
+              <div class="cart-item-info">
+                <img src="../public/img/prod1.jpg" alt="Camisa Mango" class="cart-item-img">
+                <div class="cart-item-description">
+                  <h3>Camisa Mango</h3>
+                  <span>Art: CAM-MANG-554</span>
+                </div>
+              </div>
+              <div class="cart-item-quantity">
+                <button class="quantity-btn">-</button>
+                <span>1</span>
+                <button class="quantity-btn">+</button>
+              </div>
+
+              <div class="cart-item-price">
+                <span class="sim">$ UYU </span>
+                <span class="amount">2.100</span>
+                <a id="cart-data"><i class="fa-regular fa-trash-can"></i></a>
+              </div>
+            </li>
+            <li class="cart-item">
+              <div class="cart-item-info">
+                <img src="../public/img/prod2.jpg" alt="Pantalon Hanna" class="cart-item-img">
+                <div class="cart-item-description">
+                  <h3>Pantalon Hanna</h3>
+                  <span>Art: PANT-HNNA-546</span>
+                </div>
+              </div>
+              <div class="cart-item-quantity">
+                <button class="quantity-btn">-</button>
+                <span>1</span>
+                <button class="quantity-btn">+</button>
+              </div>
+
+              <div class="cart-item-price">
+                <span class="sim">$ UYU </span>
+                <span class="amount">3.200</span>
+                <a id="cart-data"><i class="fa-regular fa-trash-can"></i></a>
+              </div>
+            </li>
+            <li class="total-fila">
+              <div class="imp-tot">
+                <span>Importe total:</span>
+                <div>
+                  <span class="sim">$ UYU </span>
+                  <span class="amount">5.300</span>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <div class="discount">
+            <span>¿Tenes código de descuento?</span>
+            <form action="">
+              <input type="text" placeholder="Ingresa código de descuento" required>
+              <button class="btn-secondary">APLICAR</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+  
+    <div class="cart-actions">
+      <a href="./shop.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i>SEGUIR COMPRANDO</a>
+      <div>
+        <span class="sim">$ UYU </span>
+        <span class="amount">5.300</span>
+      </div>
+      <a href="/envio" class="continue-btn">CONTINUAR<i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>
