@@ -54,7 +54,10 @@ const initializatePassport = () => {
 
     
 
-    passport.use('github', new GitHubStrategy(
+    // El login con GitHub es opcional: solo se activa si hay credenciales en el .env
+    if (!CLIENT_ID || !SECRET_ID) {
+        console.warn('Login con GitHub desactivado: faltan CLIENT_ID / SECRET_ID en el .env');
+    } else passport.use('github', new GitHubStrategy(
         {
             clientID: CLIENT_ID,
             clientSecret: SECRET_ID,
