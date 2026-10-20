@@ -40,3 +40,21 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Mensajes de carga, error o listas vacías */
+.status-message {
+  margin: 120px 16px 40px;
+  text-align: center;
+  color: #555;
+}
+
+/* Botón con aspecto de link (acciones dentro de textos o listas) */
+.link-button {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+  font: inherit;
+}

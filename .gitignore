@@ -19,3 +19,6 @@ server/public/img/documents/*
 !.vscode/extensions.json
 .idea
 .DS_Store
+
+# Configuración local de herramientas
+.claude/

@@ -1,53 +1,43 @@
 import React, { useEffect, useState } from 'react';
-import { useFetch } from '../../customHooks/useFetch';
 import { useParams } from "react-router-dom";
-import { getDocs, collection, query, where, limit, getDoc, doc } from 'firebase/firestore';
-import { db } from '../../firebase/client.js';
+import { getProducts } from '../../api/products';
 import ItemList from '../itemList/ItemList';
 import './itemListContainer.css';
 
 
 const ItemListContainer = () => {
-  //const { data, loading, error } = useFetch('/productos.json');
   const { category } = useParams();
   const [ products, setProducts ] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  
-  
-  const getProducts = async () =>{
-    try {
-      const productsRef = collection(db, "products");
-      //Si hay categoria la filtro
-      const q = category ? query(productsRef, where("category", "==", category)) : productsRef;
-
-      const data = await getDocs(q);
-      const dataFiltrada = data.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-      console.log(dataFiltrada);
-      setProducts(dataFiltrada);
-    } catch (error) {
-      console.error("Error al traer los productos❌");
-    } finally{
-      setLoading(false);
-    }
-    
-  }
+  const [error, setError] = useState(false);
 
   useEffect(() =>{
-    getProducts();
+    setLoading(true);
+    setError(false);
+    getProducts(category)
+      .then(setProducts)
+      .catch((e) => {
+        console.error("Error al traer los productos", e);
+        setError(true);
+      })
+      .finally(() => setLoading(false));
   }, [category])
 
   if(loading){
-    return <div>Cargando</div>
+    return <div className="status-message">Cargando...</div>
   }
 
- /* if(error){
-    return <div>ERROR</div>
-  }*/
+  if(error){
+    return <div className="status-message">No pudimos cargar los productos. Probá de nuevo en un rato.</div>
+  }
+
+  if(products.length === 0){
+    return <div className="status-message">No hay productos en esta categoría.</div>
+  }
 
   return (
       <ItemList products={products} />
   )
 }
-  
+
 export default ItemListContainer;

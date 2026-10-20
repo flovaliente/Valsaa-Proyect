@@ -13,12 +13,14 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 
 import CartWidget from '../cartWidget/CartWidget';
+import { useAuth } from '../../context/AuthContext';
 
 const pages = ['Shop', 'Rebajas', 'Locales'];
 
 const Navbar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElShop, setAnchorElShop] = React.useState(null);
+    const { user, logout } = useAuth();
 
     
     const handleOpenNavMenu = (event) => {
@@ -170,7 +172,19 @@ const Navbar = () => {
                             )
                         )}
                     </Box>
-                    <Link to={`/cart`}><CartWidget /></Link>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        {user ? (
+                            <>
+                                <Typography sx={{ color: '#202020', fontSize: 14, display: { xs: 'none', sm: 'block' } }}>
+                                    Hola, {user.firstName}
+                                </Typography>
+                                <Button onClick={logout} sx={{ color: '#202020' }}>Salir</Button>
+                            </>
+                        ) : (
+                            <Button component={Link} to="/login" sx={{ color: '#202020' }}>Ingresar</Button>
+                        )}
+                        <Link to={`/cart`} aria-label="Carrito"><CartWidget /></Link>
+                    </Box>
                 </Toolbar>
             </Container>
         </AppBar>

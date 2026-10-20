@@ -1,84 +1,106 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { ShopContext } from '../../context/ShopContext.jsx';
-import { db } from '../../firebase/client.js';
-import { addDoc, collection } from 'firebase/firestore';
+import { useAuth } from '../../context/AuthContext.jsx';
+import { checkout } from '../../api/cart.js';
+import { productImage } from '../../api/products.js';
 import './cart.css';
 
 const Cart = () =>{
-    const [ buyer, setBuyer ] = useState({ name: '', phone: '', email: '' });
-    const { lista, totalPrice, cleanCart } = useContext(ShopContext);
+    const { lista, setLista, totalPrice, updateQuantity, removeFromList } = useContext(ShopContext);
+    const { user, logout } = useAuth();
+    const [ processing, setProcessing ] = useState(false);
+    const [ error, setError ] = useState(null);
     const navigate = useNavigate();
 
-    const createOrder = () =>{
-        const order = {
-            buyer,
-            items: lista,
-            total: totalPrice(lista) 
-        };
-        console.log(order);
+    const finishPurchase = async () =>{
+        // Sin sesión: primero login, y después vuelve acá
+        if (!user) {
+            return navigate('/login', { state: { from: '/cart' } });
+        }
 
-        const orderCollection = collection(db, 'orders');
-        addDoc(orderCollection, order).then(({ id }) => {
-            console.log(id);
+        setProcessing(true);
+        setError(null);
+        try {
+            const { ticket, notProcessedProd } = await checkout(user.cart, lista);
 
-            // Limpio los input
-            setBuyer({ name: '', phone: '', email: '' });
+            // Los productos sin stock suficiente quedan en el carrito
+            const notProcessedIds = notProcessedProd.map(p => String(p.productId?._id ?? p.productId));
+            const pending = lista.filter(prod => notProcessedIds.includes(prod._id));
+            setLista(pending);
 
-            // Limpio carrito
-            cleanCart();
-
-            // Redirige a la pagina donde muestra la orden
-            navigate(`/order/${id}`)
-        }).catch((e) => console.error("Error al crear la orden: ", e));
+            navigate('/order', { state: { ticket, pending } });
+        } catch (e) {
+            console.error("Error al finalizar la compra", e);
+            setError(e.status === 401 ? 'Tu sesión expiró. Volvé a ingresar para comprar.' : 'No pudimos procesar la compra. Probá de nuevo.');
+        } finally {
+            setProcessing(false);
+        }
     }
 
-    useEffect(() =>{
-        console.log("La lista: ", lista);
-    }, [lista])
-    
-
-    return (
-        <>
+    if (lista.length === 0) {
+        return (
             <div className="cart-container">
-                <div className="cart-details">
+                <div className="cart-details cart-empty">
                     <h2>DETALLE DEL PEDIDO</h2>
-                    <div className="cart-account">
-                        <p>flovaliente143@gmail.com</p>
-                        <a href="#">Cambiar cuenta</a>
-                    </div>
-                    
-                    <ul className="cart-items">
-                        {lista.map((product) =>(
-                            <li key={product.id} className="cart-item">
-                                <div className="cart-item-info">
-                                    <img src={`${product.image}`} alt={`${product.name}`} className="cart-item-img" />
-                                    <div className="cart-item-description">
-                                        <h3>{product.name}</h3>
-                                        <p className="product-code">Art: {product.code}</p>
-                                    </div>
-                                </div>
-                                <div className="cart-item-quantity">
-                                    <button className="quantity-btn">-</button>
-                                        <span>{product.quantity}</span>
-                                    <button className="quantity-btn">+</button>
-                                </div>
-
-                                <p>$ UYU  {product.price * product.quantity}</p>
-                                        
-                                <a id="cart-data"><i className="fa-regular fa-trash-can"></i></a>
-                            </li>
-                        ))}
-                    </ul>
+                    <p>Tu carrito está vacío.</p>
+                    <Link to="/">Ver productos</Link>
                 </div>
             </div>
-            <div>Cart</div>
-            <input type="text" placeholder='Nombre' value={buyer.name} onChange={(e) => setBuyer({ ...buyer, name: e.target.value})} />
-            <input type="number" placeholder='Telefono' value={buyer.phone} onChange={(e) => setBuyer({ ...buyer, phone: e.target.value})} />
-            <input type="text" placeholder='Email' value={buyer.email} onChange={(e) => setBuyer({ ...buyer, email: e.target.value})} />
-            <button onClick={createOrder}>Finalizar Compra</button>
-        </>
+        )
+    }
+
+    return (
+        <div className="cart-container">
+            <div className="cart-details">
+                <h2>DETALLE DEL PEDIDO</h2>
+                <div className="cart-account">
+                    {user ? (
+                        <>
+                            <p>{user.email}</p>
+                            <button className="link-button" onClick={logout}>Cambiar cuenta</button>
+                        </>
+                    ) : (
+                        <p>Vas a poder ingresar o crear tu cuenta al finalizar la compra.</p>
+                    )}
+                </div>
+
+                <ul className="cart-items">
+                    {lista.map((product) =>(
+                        <li key={product._id} className="cart-item">
+                            <div className="cart-item-info">
+                                <img src={productImage(product)} alt={product.title} className="cart-item-img" />
+                                <div className="cart-item-description">
+                                    <h3>{product.title}</h3>
+                                    <p className="product-code">Art: {product.code}</p>
+                                </div>
+                            </div>
+                            <div className="cart-item-quantity">
+                                <button className="quantity-btn" aria-label="Restar uno" onClick={() => updateQuantity(product._id, product.quantity - 1)}>-</button>
+                                    <span>{product.quantity}</span>
+                                <button className="quantity-btn" aria-label="Sumar uno" onClick={() => updateQuantity(product._id, product.quantity + 1)}>+</button>
+                            </div>
+
+                            <p>$ UYU {product.price * product.quantity}</p>
+
+                            <button className="link-button" aria-label={`Quitar ${product.title}`} onClick={() => removeFromList(product._id)}>
+                                <DeleteOutlineIcon fontSize="small" />
+                            </button>
+                        </li>
+                    ))}
+                </ul>
+
+                <div className="cart-summary">
+                    <p className="cart-total">Total: $ UYU {totalPrice(lista)}</p>
+                    {error && <p className="cart-error">{error}</p>}
+                    <button className="btn btn-secondary" onClick={finishPurchase} disabled={processing}>
+                        {processing ? 'Procesando...' : 'Finalizar compra'}
+                    </button>
+                </div>
+            </div>
+        </div>
     )
 }
 
