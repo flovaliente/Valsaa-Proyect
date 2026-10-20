@@ -1,44 +1,14 @@
-import { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { ShopContext } from '../../context/ShopContext.jsx';
 import { useAuth } from '../../context/AuthContext.jsx';
-import { checkout } from '../../api/cart.js';
 import { productImage } from '../../api/products.js';
 import { formatPrice } from '../../utils/format.js';
 
 const Cart = () =>{
-    const { lista, setLista, totalPrice, updateQuantity, removeFromList } = useContext(ShopContext);
+    const { lista, totalPrice, updateQuantity, removeFromList } = useContext(ShopContext);
     const { user, logout } = useAuth();
-    const [ processing, setProcessing ] = useState(false);
-    const [ error, setError ] = useState(null);
-    const navigate = useNavigate();
-
     const total = totalPrice(lista);
-
-    const finishPurchase = async () =>{
-        // Sin sesión: primero login, y después vuelve acá
-        if (!user) {
-            return navigate('/login', { state: { from: '/cart' } });
-        }
-
-        setProcessing(true);
-        setError(null);
-        try {
-            const { ticket, notProcessedProd } = await checkout(user.cart, lista);
-
-            // Los productos sin stock suficiente quedan en el carrito
-            const notProcessedIds = notProcessedProd.map(p => String(p.productId?._id ?? p.productId));
-            const pending = lista.filter(prod => notProcessedIds.includes(prod._id));
-            setLista(pending);
-
-            navigate('/order', { state: { ticket, pending } });
-        } catch (e) {
-            console.error("Error al finalizar la compra", e);
-            setError(e.status === 401 ? 'Tu sesión expiró. Volvé a ingresar para comprar.' : 'No pudimos procesar la compra. Probá de nuevo.');
-        } finally {
-            setProcessing(false);
-        }
-    }
 
     if (lista.length === 0) {
         return (
@@ -70,7 +40,7 @@ const Cart = () =>{
                         </ul>
                     ) : (
                         <p className="cart-guest">
-                            Vas a poder <Link to="/login" state={{ from: '/cart' }}>ingresar</Link> o crear tu cuenta al finalizar la compra.
+                            En el siguiente paso podés <Link to="/login" state={{ from: '/checkout' }}>ingresar</Link>, crear tu cuenta o seguir como invitado.
                         </p>
                     )}
                 </div>
@@ -118,7 +88,6 @@ const Cart = () =>{
                             </div>
                         </li>
                     </ul>
-                    {error && <p className="cart-error">{error}</p>}
                 </div>
             </div>
 
@@ -128,9 +97,7 @@ const Cart = () =>{
                     <span className="sim">$ UYU </span>
                     <span className="amount">{formatPrice(total)}</span>
                 </div>
-                <button className="continue-btn" onClick={finishPurchase} disabled={processing}>
-                    {processing ? 'PROCESANDO...' : 'FINALIZAR COMPRA'}<i className="fa-solid fa-arrow-right"></i>
-                </button>
+                <Link to="/checkout" className="continue-btn">CONTINUAR<i className="fa-solid fa-arrow-right"></i></Link>
             </div>
         </>
     )

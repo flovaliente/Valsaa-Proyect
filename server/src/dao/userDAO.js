@@ -93,6 +93,15 @@ export default class UserDao{
         }
     }
 
+    updateCheckoutData = async (uid, data) =>{
+        try {
+            return await userModel.findByIdAndUpdate(uid, { $set: data }, { new: true });
+        } catch (error) {
+            console.error('Error updating checkout data:', error);
+            return null;
+        }
+    }
+
     updateAddress = async (uid, address) =>{
         try {
             return await userModel.findByIdAndUpdate(uid, { address: address });

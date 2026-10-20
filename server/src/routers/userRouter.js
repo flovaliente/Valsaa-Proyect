@@ -31,6 +31,9 @@ router.get('/githubcallback', passport.authenticate('github', { failureRedirect:
 //Obtengo el usuario (token) extraido de la cookie
 router.get('/current', passport.authenticate("jwt", { session: false }), userController.current);
 
+//Datos del usuario logueado para el checkout
+router.get('/profile', passport.authenticate("jwt", { session: false }), userController.profile);
+
 //Cambio rol de Premium a User y viceversa
 router.put('/premium/:uid', passport.authenticate("jwt", { session: false }), authorization(['Admin']), userController.switchRole);
 

@@ -8,6 +8,12 @@ export const register = (user) =>
 
 export const logout = () => http('/api/users/logout');
 
+// Nombre, email, teléfono y dirección guardados, para completar el checkout
+export const getProfile = async () => {
+    const data = await http('/api/users/profile');
+    return data.payload;
+};
+
 // Devuelve el usuario logueado o null si no hay sesión
 export const getCurrentUser = async () => {
     try {

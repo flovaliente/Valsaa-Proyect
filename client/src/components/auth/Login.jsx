@@ -32,7 +32,7 @@ const Login = () => {
         <div className="cart-container">
             <form className="cart-data cart-details auth-form" onSubmit={handleSubmit}>
                 <h2>INGRESAR</h2>
-                {from === '/cart' && <p className="auth-hint">Ingresá para finalizar tu compra.</p>}
+                {from === '/checkout' && <p className="auth-hint">Ingresá para finalizar tu compra con tus datos guardados.</p>}
 
                 <label htmlFor="email">Email</label>
                 <input id="email" name="email" type="email" autoComplete="email" required value={form.email} onChange={handleChange} />

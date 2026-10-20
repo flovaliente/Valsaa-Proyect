@@ -98,6 +98,14 @@ class UserRepository{
         }
     }
 
+    async updateCheckoutData(uid, data){
+        try {
+            return await this.userDao.updateCheckoutData(uid, data);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     async updateAddress(uid, address){
         try {
             return await this.userDao.updateAddress(uid, address);

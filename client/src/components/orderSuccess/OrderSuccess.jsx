@@ -1,34 +1,48 @@
 import { Link, Navigate, useLocation } from 'react-router-dom';
 import { formatPrice } from '../../utils/format';
+import { findStore } from '../../data/stores';
 
-// Pantalla de confirmación después de comprar. Recibe el ticket por el state de la navegación.
+// Confirmación después de pagar. Recibe la orden por el state de la navegación.
 const OrderSuccess = () => {
     const { state } = useLocation();
+    const order = state?.order;
 
-    if (!state?.ticket) {
+    if (!order) {
         return <Navigate to="/" replace />;
     }
 
-    const { ticket, pending } = state;
+    const { shipping, payment } = order;
+    const store = shipping.method === 'pickup' ? findStore(shipping.store) : null;
 
     return (
         <div className="cart-container">
-            <div className="cart-data cart-details cart-empty">
-                <h2>¡GRACIAS POR TU COMPRA!</h2>
-                {ticket.amount > 0 ? (
-                    <>
-                        <p>Tu número de orden es <strong>{ticket.code}</strong>.</p>
-                        <p>Total: $ UYU {formatPrice(ticket.amount)}</p>
-                    </>
+            <div className="cart-data cart-details cart-empty order-success">
+                <h2>¡GRACIAS POR TU COMPRA, {order.buyer.firstName.toUpperCase()}!</h2>
+                <p>Tu número de orden es <strong>{order.code}</strong>.</p>
+
+                <ul className="order-items">
+                    {order.items.map(item => (
+                        <li key={item.product}>
+                            {item.quantity} × {item.title} — $ UYU {formatPrice(item.price * item.quantity)}
+                        </li>
+                    ))}
+                </ul>
+
+                <p>
+                    Envío: {order.shippingCost === 0 ? 'Gratis' : `$ UYU ${formatPrice(order.shippingCost)}`}<br />
+                    <strong>Total pagado: $ UYU {formatPrice(order.total)}</strong>
+                    {payment?.cardLast4 && <> con {payment.cardBrand} terminada en {payment.cardLast4}</>}
+                </p>
+
+                {store ? (
+                    <p>Podés retirarla en <strong>{store.name}</strong>: {store.address} {store.hours}</p>
                 ) : (
-                    <p>No se pudo procesar ningún producto por falta de stock.</p>
-                )}
-                {pending.length > 0 && (
                     <p>
-                        {pending.length === 1 ? 'Un producto quedó' : `${pending.length} productos quedaron`} en tu carrito porque no hay stock suficiente.
-                        {' '}<Link to="/cart">Ver carrito</Link>
+                        La enviamos a <strong>{shipping.address.street}{shipping.address.apartment && `, apto. ${shipping.address.apartment}`}</strong>,
+                        {' '}{shipping.address.city}, {shipping.address.department}.
                     </p>
                 )}
+
                 <Link to="/shop" className="btn btn-secondary">SEGUIR COMPRANDO</Link>
             </div>
         </div>
