@@ -21,6 +21,7 @@ valsaa/
 cd server
 cp .env.example .env   # completar los valores
 npm install
+npm run seed   # carga el catálogo inicial (solo la primera vez)
 npm run dev
 ```
 

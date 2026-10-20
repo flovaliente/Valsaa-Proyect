@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node .",
-    "dev": "nodemon ."
+    "dev": "nodemon .",
+    "seed": "node src/seed/seedProducts.js"
   },
   "author": "Florencia Valiente",
   "license": "ISC",
