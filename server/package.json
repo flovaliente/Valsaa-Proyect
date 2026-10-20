@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node .",
-    "dev": "nodemon .",
+    "dev": "node --watch src/server.js",
     "seed": "node src/seed/seedProducts.js"
   },
   "author": "Florencia Valiente",
