@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import './auth.css';
 
 const Login = () => {
     const { login } = useAuth();
@@ -30,8 +29,8 @@ const Login = () => {
     };
 
     return (
-        <div className="auth-container">
-            <form className="auth-form" onSubmit={handleSubmit}>
+        <div className="cart-container">
+            <form className="cart-data cart-details auth-form" onSubmit={handleSubmit}>
                 <h2>INGRESAR</h2>
                 {from === '/cart' && <p className="auth-hint">Ingresá para finalizar tu compra.</p>}
 

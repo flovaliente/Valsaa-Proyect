@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import './auth.css';
 
 const MIN_PASSWORD_LENGTH = 8;
 
@@ -36,8 +35,8 @@ const Register = () => {
     };
 
     return (
-        <div className="auth-container">
-            <form className="auth-form" onSubmit={handleSubmit}>
+        <div className="cart-container">
+            <form className="cart-data cart-details auth-form" onSubmit={handleSubmit}>
                 <h2>CREAR CUENTA</h2>
 
                 <label htmlFor="firstName">Nombre</label>

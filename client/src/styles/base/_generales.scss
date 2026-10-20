@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Para que el padding y el borde están incluidos en el ancho y el alto especificados*/
+}
+
+body {
+    color: #606c76;
+    font-family: 'Montserrat', 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    font-weight: 300;
+    letter-spacing: .01em;
+    -webkit-text-size-adjust: 100%;
+}
+
+hr{
+    background-color: #aeaeae5a;
+    border: none; /* Elimina el borde predeterminado */
+    height: 0.5px; /* Ajusta el grosor */
+}
+
+a {
+    text-decoration: none;
+    color: #000000;
+}
+
+a:focus, a:hover {
+    color: nth($font-color, 3);
+    transition: 0.5s;
+}
+  
+p{
+    margin-bottom: 0;
+}
+  
+ul {
+    padding-left: 0; //Pq al utilizar bootstrap me ponia padding left
+    list-style: circle inside;
+    list-style: none;
+}
+
+li{
+    line-height: inherit;
+    margin: 0;
+}
+
+h3{
+    text-decoration: none;
+}
+
+input{
+    padding: 3px;
+}
+
+/*---BUTTONS---*/
+#btn-submit {
+    margin-top: 10px; /* Espacio entre el campo de correo y el botón */
+    width: 100%; /* Para que el botón ocupe todo el ancho */
+    padding: 10px;
+    background-color: black;
+    color: nth($font-color, 4);
+    border: none;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    font-size: small;
+}
+.btn-secondary{
+    padding: 8px;
+    background-color: black;
+    color: nth($font-color, 4);
+    border: none;
+    border-radius: 0;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    font-size: small;
+    align-items: center;
+    transition: all 0,3s;
+    &:hover{
+        background-color:rgb(57, 57, 57);
+        color: nth($font-color-hover, 2);
+    }
+}

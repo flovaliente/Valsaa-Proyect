@@ -1,11 +1,8 @@
-import React, { useState } from 'react';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import AddIcon from '@mui/icons-material/Add';
 import { ShopContext } from '../../context/ShopContext';
 import { productImage } from '../../api/products';
+import { formatPrice } from '../../utils/format';
 
 
 const ItemDetail = ({ product }) => {
@@ -23,6 +20,9 @@ const ItemDetail = ({ product }) => {
 
     return (
         <div className="product-page">
+            <div className="text-with-border">
+                <Link to="/shop" className="back-link"><i className="fa-solid fa-chevron-left"></i>Volver al listado</Link>
+            </div>
 
             <div className="product-content">
                 <div className="product-images">
@@ -42,24 +42,26 @@ const ItemDetail = ({ product }) => {
                 </div>
 
                 <div className="product-details">
-                    <h1>{product.title}</h1>
+                    <h1>{product.title.toUpperCase()}</h1>
                     <p className="product-code">Art: {product.code}</p>
                     <div className="price-section">
                         <span className="sim">$ UYU </span>
-                        <span className="amount">{product.price}</span>
+                        <span className="amount">{formatPrice(product.price)}</span>
                     </div>
                     <div className="product-options">
                         <div className="sizes">
                             <label htmlFor="sizes">Talle:</label>
                             <div className="size-options">
+                                <button>XS</button>
                                 <button>S</button>
                                 <button>M</button>
                                 <button>L</button>
+                                <button>XL</button>
                             </div>
                         </div>
                         {maxQuantity > 0 ? (
                             <div className="actions">
-                                <button className="wishlist-button" aria-label="Agregar a favoritos"><FavoriteBorderIcon fontSize="small" /></button>
+                                <button className="wishlist-button" aria-label="Agregar a favoritos"><i className="fa-regular fa-heart"></i></button>
                                 <div className="quantity">
                                     <select id="quantity" name="quantity" value={quantity} onChange={(e) => setQuantity(parseInt(e.target.value))} >
                                         {Array.from({ length: maxQuantity }, (_, i) => i + 1).map(n => (
@@ -67,7 +69,7 @@ const ItemDetail = ({ product }) => {
                                         ))}
                                     </select>
                                 </div>
-                                <button className="btn btn-secondary" onClick={handleAdd}>AGREGAR AL CARRITO</button>
+                                <button className="btn btn-secondary" onClick={handleAdd}>COMPRAR</button>
                             </div>
                         ) : (
                             <p className="out-of-stock">Sin stock</p>
@@ -79,8 +81,6 @@ const ItemDetail = ({ product }) => {
                         )}
                     </div>
 
-
-
                     <div className="itau-button">
                         <button className="millas-button">
                             <img src="/img/itau.png" alt="Itau"/> CANJEÁ ACÁ TUS MILLAS ITAÚ
@@ -88,8 +88,8 @@ const ItemDetail = ({ product }) => {
                     </div>
 
                     <div className="shipping">
-                        <p className="shipping-info"><LocalShippingIcon fontSize="small" /> MÉTODOS Y COSTOS DE ENVÍO</p>
-                        <AddIcon fontSize="small" />
+                        <p className="shipping-info"><i className="fa-solid fa-truck-fast"></i>MÉTODOS Y COSTOS DE ENVÍO</p>
+                        <i className="fa-solid fa-plus"></i>
                     </div>
 
                 </div>
