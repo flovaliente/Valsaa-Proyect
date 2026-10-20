@@ -1,4 +1,5 @@
 import userService from '../services/userService.js';
+import UserDTO from '../dao/dto/userDTO.js';
 
 const getUsers = async (req, res) =>{
     try {
@@ -16,13 +17,37 @@ const getUsers = async (req, res) =>{
     }
 }
 
+// El client de React pide JSON; las vistas de Handlebars envían formularios y esperan redirecciones
+const wantsJson = (req) => req.accepts(['html', 'json']) === 'json';
+
 const register = async (req, res) =>{
     try {
-        const user = req.body;
-        //console.log('Req body en controller: ', req.body);
-        const result = await userService.registerUser(user);
+        // Solo se toman los campos permitidos, para que nadie pueda registrarse enviando por ejemplo role: "Admin"
+        const { firstName, lastName, email, age, password } = req.body;
+        if (!firstName || !email || !password) {
+            if (wantsJson(req)) {
+                return res.status(400).send({ status: 'error', message: 'firstName, email and password are required.' });
+            }
+            return res.redirect('/register');
+        }
+
+        const existingUser = await userService.findUserByEmail(email);
+        if (existingUser) {
+            if (wantsJson(req)) {
+                return res.status(409).send({ status: 'error', message: 'Email already registered.' });
+            }
+            return res.redirect('/register');
+        }
+
+        await userService.registerUser({ firstName, lastName, email, age, password });
+        if (wantsJson(req)) {
+            return res.status(201).send({ status: 'success' });
+        }
         res.redirect('/login');
     } catch (error) {
+        if (wantsJson(req)) {
+            return res.status(500).send({ status: 'error', message: 'Registration error.' });
+        }
         res.redirect('/register');
     }
 }
@@ -37,15 +62,16 @@ const failRegister = (req, res) =>{
 const login = async (req, res) =>{
     const { email, password } = req.body; 
     try {
-        const user = await userService.findUserByEmail(email);
-        console.log('User by email: ', user);
         req.session.failLogin = false;
-        await userService.updateLastConnection(email);
         const accessToken = await userService.loginUser(email, password);
+        const user = await userService.findUserByEmail(email);
+        await userService.updateLastConnection(email);
 
-        res.cookie('accessToken', accessToken , { maxAge: 60*60*1000, httpOnly: true });
-        console.log('rol: ', user.role);
+        res.cookie('accessToken', accessToken , { maxAge: 60*60*1000, httpOnly: true, sameSite: 'lax' });
 
+        if (wantsJson(req)) {
+            return res.status(200).send({ status: 'success', user: new UserDTO(user) });
+        }
         if (user.role == 'Admin') {
             return res.redirect('/adminPanel')
         } else {
@@ -53,6 +79,9 @@ const login = async (req, res) =>{
         }
      } catch (error) {
          console.log('Error durante el login. Error: ', error.message);
+         if (wantsJson(req)) {
+             return res.status(401).send({ status: 'error', message: 'Invalid email or password.' });
+         }
          req.session.failLogin = true;
          return res.redirect("/login");
      }
@@ -74,10 +103,17 @@ const logout = async (req, res) =>{
 
         req.session.destroy( error =>{
             res.clearCookie("accessToken");
+            if (wantsJson(req)) {
+                return res.status(200).send({ status: 'success' });
+            }
             res.redirect("/login");
         });
     } catch (error) {
         console.log('Error durante el logout. Error: ', error.message);
+        res.clearCookie("accessToken");
+        if (wantsJson(req)) {
+            return res.status(200).send({ status: 'success' });
+        }
         res.redirect("/login");
     }
 }
@@ -97,7 +133,7 @@ const githubcallback = (req, res) =>{
 const current = (req, res) =>{
     res.send({
         status: 'success',
-        user: req.user
+        user: req.user.user
     });
 }
 

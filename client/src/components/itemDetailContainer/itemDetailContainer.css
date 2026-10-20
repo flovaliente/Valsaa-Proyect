@@ -286,3 +286,14 @@ input {
 .product-page .product-content .product-details .shipping .shipping-info i {
     padding-right: 8px;
 }
+.product-details .added-message,
+.product-details .out-of-stock {
+    font-size: 13px;
+    margin-top: 10px;
+}
+.product-details .out-of-stock {
+    color: #b00020;
+}
+.product-images .thumbnails img {
+    cursor: pointer;
+}

@@ -27,6 +27,8 @@ npm run dev
 
 La API queda en `http://localhost:8080` y la documentación Swagger en `/api/docs`.
 
+El client se abre en `http://localhost:5173` y reenvía al server las rutas `/api` y `/img`, así que **el server tiene que estar corriendo** para ver productos.
+
 ### Client
 
 ```bash
@@ -38,8 +40,8 @@ npm run dev
 ## Hoja de ruta
 
 - [x] Unificar los tres proyectos en un solo repositorio
-- [ ] Conectar el client con la API del server (reemplazar Firebase)
-- [ ] Unificar el modelo de producto y el catálogo
+- [x] Conectar el client con la API del server (reemplazar Firebase)
+- [x] Unificar el modelo de producto y el catálogo
 - [ ] Portar el diseño del sitio estático a React
 - [ ] Corregir problemas de seguridad (secretos en el código, rutas sin autorización)
 - [ ] Migrar a TypeScript

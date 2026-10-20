@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import { productImage } from "../../api/products";
 
 
 const ItemList= ({ products }) => {
@@ -7,11 +8,12 @@ const ItemList= ({ products }) => {
     return (
         <div className="table-responsive">
             {products.map((product) => (
-                <div key={product.id} className="container-products">
+                <div key={product._id} className="container-products">
                     <div className="products">
-                        <Link to={`/item/${product.id}`}><img src={`${product.image}`} alt={`${product.name}`}/></Link>
+                        <Link to={`/item/${product._id}`}><img src={productImage(product)} alt={product.title}/></Link>
                         <div className="product-description">
-                            <h3>{product.name}</h3>
+                            <h3>{product.title}</h3>
+                            <span>$ UYU {product.price}</span>
                         </div>
                     </div>
                 </div>
@@ -20,5 +22,5 @@ const ItemList= ({ products }) => {
         </div>
     )
 }
-  
+
 export default ItemList;

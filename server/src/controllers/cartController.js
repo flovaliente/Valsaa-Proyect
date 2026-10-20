@@ -107,7 +107,45 @@ const addToCart = async (req, res) => {
             message: error.message
         });
     }
-    
+
+}
+
+// Reemplaza todos los productos del carrito: lo usa el client para pasar el carrito
+// guardado en el navegador al backend antes de comprar.
+// Body: { products: [{ productId, quantity }] }
+const replaceCartProducts = async (req, res) =>{
+    try {
+        const { cid } = req.params;
+        if (String(req.user.user.cart) !== cid) {
+            return res.status(403).send({
+                status: 'error',
+                message: 'You don`t have permission to modify this cart.'
+            });
+        }
+
+        const { products } = req.body;
+        const isValid = Array.isArray(products) && products.every(p =>
+            p.productId && Number.isInteger(p.quantity) && p.quantity > 0
+        );
+        if (!isValid) {
+            return res.status(400).send({
+                status: 'error',
+                message: 'products must be an array of { productId, quantity }.'
+            });
+        }
+
+        const cart = await cartService.replaceProducts(cid, products);
+        res.status(200).send({
+            status: 'success',
+            payload: cart
+        });
+    } catch (error) {
+        req.logger.error('Error replacing cart products.');
+        res.status(400).send({
+            status: 'error',
+            message: error.message
+        });
+    }
 }
 
 const deleteCart = async (req, res) =>{
@@ -225,6 +263,7 @@ export default {
     getCartById,
     updateQuantityCart,
     addToCart,
+    replaceCartProducts,
     deleteCart,
     deleteProdFromCart,
     purchaseCart

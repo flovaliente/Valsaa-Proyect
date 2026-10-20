@@ -69,6 +69,15 @@ class CartRepository {
         }
     }
 
+    async replaceProducts(cid, products){
+        try {
+            return await this.cartDao.replaceProducts(cid, products);
+        } catch (error) {
+            console.error(error.message);
+            throw new Error(`Error replacing cart products.`);
+        }
+    }
+
     async deleteCart(cid){
         try {
             const result = await this.cartDao.deleteCart(cid);

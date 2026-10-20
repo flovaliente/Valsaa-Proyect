@@ -41,6 +41,14 @@ const addToCart = async (cid, pid, quantity) =>{
     }
 }
 
+const replaceProducts = async (cid, products) =>{
+    try {
+        return await cartManager.replaceProducts(cid, products);
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
+
 const deleteCart = async (cid) =>{
     try {
         await cartManager.deleteCart(cid);
@@ -63,6 +71,7 @@ export default {
     getCartById,
     updateQuantityCart,
     addToCart,
+    replaceProducts,
     deleteCart,
     deleteProdFromCart
 };

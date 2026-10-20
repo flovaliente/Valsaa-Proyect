@@ -1,15 +1,25 @@
-import React, { useEffect ,useState } from 'react';
+import React, { useState } from 'react';
 import { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import AddIcon from '@mui/icons-material/Add';
 import { ShopContext } from '../../context/ShopContext';
+import { productImage } from '../../api/products';
 
 
 const ItemDetail = ({ product }) => {
     const [ quantity, setQuantity ] = useState(1);
-    const { lista ,addToList } = useContext(ShopContext);
+    const [ selectedImage, setSelectedImage ] = useState(0);
+    const [ added, setAdded ] = useState(false);
+    const { addToList } = useContext(ShopContext);
 
-    useEffect(() => {
-        console.log("Carrito actualizado:", lista);
-    }, [lista]);
+    const maxQuantity = Math.min(5, product.stock);
+
+    const handleAdd = () => {
+        addToList(product, quantity);
+        setAdded(true);
+    };
 
     return (
         <div className="product-page">
@@ -17,17 +27,22 @@ const ItemDetail = ({ product }) => {
             <div className="product-content">
                 <div className="product-images">
                     <div className="thumbnails">
-                        <img src={`${product.image}`} alt={`${product.name}`}/>
-                        <img src={`${product.image}`} alt={`${product.name}`}/>
-                        <img src={`${product.image}`} alt={`${product.name}`}/>
+                        {product.thumbnails.map((thumbnail, index) => (
+                            <img
+                                key={thumbnail}
+                                src={productImage(product, index)}
+                                alt={`${product.title} - foto ${index + 1}`}
+                                onClick={() => setSelectedImage(index)}
+                            />
+                        ))}
                     </div>
                     <div className="main-image">
-                        <img src={`${product.image}`} alt={`${product.name}`}/>
+                        <img src={productImage(product, selectedImage)} alt={product.title}/>
                     </div>
                 </div>
-        
+
                 <div className="product-details">
-                    <h1>{product.name}</h1>
+                    <h1>{product.title}</h1>
                     <p className="product-code">Art: {product.code}</p>
                     <div className="price-section">
                         <span className="sim">$ UYU </span>
@@ -42,34 +57,41 @@ const ItemDetail = ({ product }) => {
                                 <button>L</button>
                             </div>
                         </div>
-                        <div className="actions">
-                            <button className="wishlist-button"><i className="fa-regular fa-heart"></i></button>
-                            <div className="quantity">
-                                <select id="quantity" name="quantity" value={quantity} onChange={(e) => setQuantity(parseInt(e.target.value))} >
-                                    <option value="1">Cant.: 1</option>
-                                    <option value="2">Cant.: 2</option>
-                                    <option value="3">Cant.: 3</option>
-                                    <option value="4">Cant.: 4</option>
-                                    <option value="5">Cant.: 5</option>
-                                </select>
+                        {maxQuantity > 0 ? (
+                            <div className="actions">
+                                <button className="wishlist-button" aria-label="Agregar a favoritos"><FavoriteBorderIcon fontSize="small" /></button>
+                                <div className="quantity">
+                                    <select id="quantity" name="quantity" value={quantity} onChange={(e) => setQuantity(parseInt(e.target.value))} >
+                                        {Array.from({ length: maxQuantity }, (_, i) => i + 1).map(n => (
+                                            <option key={n} value={n}>Cant.: {n}</option>
+                                        ))}
+                                    </select>
+                                </div>
+                                <button className="btn btn-secondary" onClick={handleAdd}>AGREGAR AL CARRITO</button>
                             </div>
-                            <button className="btn btn-secondary" onClick={() => addToList(product, quantity)}>COMPRAR</button>
-                        </div>
+                        ) : (
+                            <p className="out-of-stock">Sin stock</p>
+                        )}
+                        {added && (
+                            <p className="added-message">
+                                Agregado al carrito. <Link to="/cart">Ver carrito</Link>
+                            </p>
+                        )}
                     </div>
-            
-                    
-            
+
+
+
                     <div className="itau-button">
                         <button className="millas-button">
-                            <img src="../public/img/itau.png" alt="Itau"/> CANJEÁ ACÁ TUS MILLAS ITAÚ
+                            <img src="/img/itau.png" alt="Itau"/> CANJEÁ ACÁ TUS MILLAS ITAÚ
                         </button>
                     </div>
-                    
+
                     <div className="shipping">
-                        <p className="shipping-info"><i className="fa-solid fa-truck-fast"></i>MÉTODOS Y COSTOS DE ENVÍO</p>
-                        <i className="fa-solid fa-plus"></i>
+                        <p className="shipping-info"><LocalShippingIcon fontSize="small" /> MÉTODOS Y COSTOS DE ENVÍO</p>
+                        <AddIcon fontSize="small" />
                     </div>
-                    
+
                 </div>
             </div>
         </div>

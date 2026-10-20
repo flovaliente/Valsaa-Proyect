@@ -29,7 +29,7 @@ router.get('/github', passport.authenticate('github', { scope: [ 'user:email' ] 
 router.get('/githubcallback', passport.authenticate('github', { failureRedirect: '/login' }), userController.githubcallback);
 
 //Obtengo el usuario (token) extraido de la cookie
-router.get('/current', passport.authenticate("jwt", { session: false }), authorization('User'), userController.current);
+router.get('/current', passport.authenticate("jwt", { session: false }), userController.current);
 
 //Cambio rol de Premium a User y viceversa
 router.put('/premium/:uid', passport.authenticate("jwt", { session: false }), authorization(['Admin']), userController.switchRole);
