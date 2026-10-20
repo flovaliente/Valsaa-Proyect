@@ -1,0 +1,72 @@
+/*---FOOTER---*/
+footer{
+    .top-bar{
+        background-color: #ec7000;
+        color: white;
+        font-family: "Montserrat", sans-serif;
+        @include flex (flex, center, center);
+        padding: 5px;
+        margin-bottom: 30px;
+        margin-top: 30px;
+        font-size: 22px;
+        font-weight: 500;
+        img{
+            width: 50px;
+            margin-left: 10px;
+        }
+    }
+
+    .social-footer{
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+        ul{
+            display: flex;
+            gap: 20px;
+            li{
+                a{
+                    @include flex (flex, center, center);
+                    i{
+                        color: #202020;
+                        font-size: 30px;
+                    }
+                }
+            }
+        }
+    }
+
+    .footer-content{
+        @include flex (flex, space-around, flex-start);
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+        .column{
+            .hdr{
+                .tit{
+                    font-size: 13px;
+                    font-weight: bold;
+                    margin-bottom: 10px;
+                    color: #3e3e3e;
+                }
+            }
+            ul{
+                li{
+                    a{
+                        color:#333;
+                        font-size: 13px;
+                    }
+                }
+            }
+        }
+        .clm-newsletter{
+            form{
+                display: flex;
+                flex-direction: column;
+                input{
+                    font-size: 13px;
+                    line-height: 1;
+                    padding: 8px;
+                }
+            }
+        }
+    }
+}

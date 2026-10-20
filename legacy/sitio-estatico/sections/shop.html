@@ -1,0 +1,476 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fontawesome.com/icons">
+    <link rel="stylesheet" href="../css/estilos.css">
+    <!-- KEYWORDS -->
+    <meta name="keywords" content="Camisas, Buzos, Jeans, Pantalón, Pantalones, Saco, Calzado, Botas, Tapados, Chaquetas, Faldas, Top, Shorts, Sandalias, Remeras, Vestidos, Zapatos, Sweater, Ruana, Shop, Tienda, Ropa, Valsaa, Catálogo">
+    <!-- DESCRIPTION -->
+    <meta name="description" content="Descubrí las últimas tendencias en moda. Prendas únicas con el estilo que nos caracteriza.">
+    <!-- OPEN GRAPH -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Shop | Valsaa">
+    <meta property="og:image" content="">
+    <meta property="og:url" content="">
+    <!-- TITLE -->
+    <title>Shop | Valsaa</title>
+    <!-- FAVICON -->
+    <link rel="shortcut icon" href="../public/img/favicon.ico" type="image/x-icon">
+  </head>
+  <body>
+    
+    <header>
+      <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="nav-bar-icons">
+            <a href="#" class="icon"><i class="fas fa-search"></i></a>
+            <a href="#" class="icon"><i class="fas fa-user"></i></a>
+            <a href="./cart.html" class="icon"><i class="fas fa-shopping-cart"></i></a>
+          </div>
+          <div class="nav-bar-brand">
+            <a href="../index.html">
+              <img src="../public/img/logo.png" alt="Valsaa Logo" class="brand-logo">
+            </a>
+          </div>
+          <div class="nav-bar-bottom">
+            <ul class="nav-bar-menu">
+              <li><a href="./shop.html">Shop</a></li>
+              <li><a href="#">Rebajas</a></li>
+              <li><a href="#">Precios Especiales</a></li>
+              <li><a href="./locales.html">Locales</a></li>
+            </ul>
+          </div>
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Valsaa</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="./shop.html">Shop</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Rebajas</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Precios Especiales</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./locales.html">Locales</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="filter-container">
+        <button class="filter-button"><i class="fas fa-filter"></i>Filtrar</button>
+  
+        <div class="dropdown">
+          <select id="filter-options">
+            <option value="recommended">Recomendados</option>
+            <option value="price-asc">Menor precio</option>
+            <option value="price-desc">Mayor precio</option>
+            <option value="latest">Más Recientes</option>
+          </select>
+        </div>
+      </div>
+  
+      <div class="table-responsive">
+          <div class="container-products">
+            <div class="products">
+              <a href="./producto.html"><img src="../public/img/prod1.jpg" alt="Camisa Mango"></a>
+              <div class="product-description">
+                <h3 >Camisa Mango</h3>
+                <span >$ 2100</span>
+              </div>
+            </div>
+          </div>
+  
+          <div class="container-products">
+            <div class="products">
+              <a href="./producto.html"><img src="../public/img/prod2.jpg" alt="Pantalon Hanna"></a>
+              <div class="product-description">
+                <h3 >Pantalon Hanna</h3>
+                <span >$ UYU 3.200</span>
+              </div>
+            </div>
+          </div>
+  
+          <div class="container-products">
+            <div class="products">
+              <a href="./producto.html"><img src="../public/img/prod3.jpg" alt="Campera Nala"></a>
+              <div class="product-description">
+                <h3>Campera Nala</h3>
+                <span>$ UYU 3.600</span>
+              </div>
+            </div>
+          </div>
+  
+          <div class="container-products">
+            <div class="products">
+              <a href="./producto.html"><img src="../public/img/prod4.jpg" alt="Blusa Flowers"></a>
+              <div class="product-description">
+                <h3>Blusa Flowers</h3>
+                <span>$ UYU 2.800</span>
+              </div>
+            </div>
+          </div>
+  
+          <div class="container-products">
+            <div class="products">
+              <a href="./producto.html"><img src="../public/img/prod5.jpg" alt="Camisa Colors"></a>
+              <div class="product-description">
+                <h3>Camisa Colors</h3>
+                <span>$ UYU 3.250</span>
+              </div>
+            </div>
+          </div>
+  
+          <div class="container-products">
+            <div class="products">
+              <a href="./producto.html"><img src="../public/img/prod6.jpg" alt="Red Brisa"></a>
+              <div class="product-description">
+                <h3>Red Brisa</h3>
+                <span>$ UYU 3.450</span>
+              </div>
+            </div>
+          </div>
+          <div class="container-products">
+            <div class="products">
+              <a href="./producto.html"><img src="../public/img/prod7.jpg" alt="Pantalon Leah"></a>
+              <div class="product-description">
+                <h3>Pantalon Leah</h3>
+                <span>$ UYU 4.500</span>
+              </div>
+            </div>
+          </div>
+          <div class="container-products">
+            <div class="products">
+              <a href="./producto.html"><img src="../public/img/prod8.jpg" alt="Jean Cava"></a>
+              <div class="product-description">
+                <h3>Jean Cava</h3>
+                <span>$ UYU 3.900</span>
+              </div>
+            </div>
+          </div>
+          <div class="container-products">
+            <div class="products">
+              <a href="./producto.html"><img src="../public/img/prod9.jpg" alt="Vestido Shan"></a>
+              <div class="product-description">
+                <h3>Vestido Shan</h3>
+                <span>$ UYU 8.100</span>
+              </div>
+            </div>
+          </div>
+          <div class="container-products">
+            <div class="products">
+              <a href="./producto.html"><img src="../public/img/prod10.jpg" alt="Vestido Lio"></a>
+              <div class="product-description">
+                <h3>Vestido Lio</h3>
+                <span>$ UYU 7.650</span>
+              </div>
+            </div>
+          </div>
+          <div class="container-products">
+            <div class="products">
+              <a href="./producto.html"><img src="../public/img/prod21.jpg" alt="Chaleco Amade"></a>
+              <div class="product-description">
+                <h3>Chaleco Amade</h3>
+                <span>$ UYU 3.900</span>
+              </div>
+            </div>
+          </div>
+          <div class="container-products">
+            <div class="products">
+              <a href="./producto.html"><img src="../public/img/prod22.jpg" alt="Buzo Ibiza"></a>
+              <div class="product-description">
+                <h3>Buzo Ibiza</h3>
+                <span>$ UYU 3.590</span>
+              </div>
+            </div>
+          </div>
+          <div class="container-products">
+            <div class="products">
+              <a href="./producto.html"><img src="../public/img/prod23.jpg" alt="Pollera Alma"></a>
+              <div class="product-description">
+                <h3>Pollera Alma</h3>
+                <span>$ UYU 2.990</span>
+              </div>
+            </div>
+          </div>
+          <div class="container-products">
+            <div class="products">
+              <a href="./producto.html"><img src="../public/img/prod25.jpg" alt="Pantalon Chick"></a>
+              <div class="product-description">
+                <h3>Pantalon Chick</h3>
+                <span>$ UYU 4.200</span>
+              </div>
+            </div>
+          </div>
+          <div class="container-products">
+            <div class="products">
+              <a href="./producto.html"><img src="../public/img/prod11.jpg" alt="Bermuda Golden"></a>
+              <div class="product-description">
+                <h3>Bermuda Golden</h3>
+                <span>$ UYU 4.550</span>
+              </div>
+            </div>
+          </div>
+          <div class="container-products">
+            <div class="products">
+              <a href="./producto.html"><img src="../public/img/prod26.jpg" alt="Chaleco Denver"></a>
+              <div class="product-description">
+                <h3>Chaleco Denver</h3>
+                <span>$ UYU 3.350</span>
+              </div>
+            </div>
+          </div>
+          <div class="container-products">
+            <div class="products">
+              <a href="./producto.html"><img src="../public/img/prod13.jpg" alt="Bota Tracto"></a>
+              <div class="product-description">
+                <h3>Bota Tracto</h3>
+                <span>$ UYU 8.200</span>
+              </div>
+            </div>
+          </div>
+          <div class="container-products">
+            <div class="products">
+              <a href="./producto.html"><img src="../public/img/prod24.jpg" alt="Bota Flanco"></a>
+              <div class="product-description">
+                <h3>Bota Flanco</h3>
+                <span>$ UYU 9.100</span>
+              </div>
+            </div>
+          </div>
+          <div class="container-products">
+            <div class="products">
+              <a href="./producto.html"><img src="../public/img/prod14.jpg" alt="Bota Cairo"></a>
+              <div class="product-description">
+                <h3>Bota Cairo</h3>
+                <span>$ UYU 7.150</span>
+              </div>
+            </div>
+          </div>
+          <div class="container-products">
+            <div class="products">
+              <a href="./producto.html"><img src="../public/img/prod16.jpg" alt="Sandalia Red - Rojo"></a>
+              <div class="product-description">
+                <h3>Sandalia Red - Rojo</h3>
+                <span>$ UYU 6.990</span>
+              </div>
+            </div>
+          </div>
+          <div class="container-products">
+            <div class="products">
+              <a href="./producto.html"><img src="../public/img/prod17.jpg" alt="Sandalia Red - Marrón"></a>
+              <div class="product-description">
+                <h3>Sandalia Red - Marrón</h3>
+                <span>$ UYU 6.990</span>
+              </div>
+            </div>
+          </div>
+          <div class="container-products">
+            <div class="products">
+              <a href="./producto.html"><img src="../public/img/prod18.jpg" alt="Sandalia Gigi"></a>
+              <div class="product-description">
+                <h3>Sandalia Gigi</h3>
+                <span>$ UYU 6.250</span>
+              </div>
+            </div>
+          </div>
+          <div class="container-products">
+            <div class="products">
+              <a href="./producto.html"><img src="../public/img/prod19.jpg" alt="Bota Tracto Mini"></a>
+              <div class="product-description">
+                <h3>Bota Tracto Mini</h3>
+                <span>$ UYU 7.800</span>
+              </div>
+            </div>
+          </div>
+          <div class="container-products">
+            <div class="products">
+              <a href="./producto.html"><img src="../public/img/prod20.jpg" alt="Bota Plata"></a>
+              <div class="product-description">
+                <h3>Bota Plata</h3>
+                <span>$ UYU 9.590</span>
+              </div>
+            </div>
+          </div>
+      </div>
+  
+      <div class="carousel-title">
+        <h2>Ultimos productos vistos</h2>
+      </div>
+      <div id="carouselExampleFade" class="carousel slide">
+        <div class="carousel-inner">
+          <!-- Primera diapositiva con 4 productos -->
+          <div class="carousel-item active">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="card">
+                  <img src="../public/img/prod8.jpg" class="card-img-top" alt="Jean Cava">
+                  <div class="card-body">
+                    <h3>Jean Cava</h3>
+                    <p>$ UYU 3.900</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card">
+                  <img src="../public/img/prod7.jpg" class="card-img-top" alt="Pantalon Leah">
+                  <div class="card-body">
+                    <h3>Pantalon Leah</h3>
+                    <p>$ UYU 4.500</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card">
+                  <img src="../public/img/prod6.jpg" class="card-img-top" alt="Red Brisa">
+                  <div class="card-body">
+                    <h3>Red Brisa</h3>
+                    <p>$ UYU 3.450</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card">
+                  <img src="../public/img/prod11.jpg" class="card-img-top" alt="Bermuda Golden">
+                  <div class="card-body">
+                    <h3>Bermuda Golden</h3>
+                    <p>$ UYU 4.550</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+          <!-- Segunda diapositiva con otros 4 productos -->
+          <div class="carousel-item">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="card">
+                  <img src="../public/img/prod22.jpg" class="card-img-top" alt="Buzo Ibiza">
+                  <div class="card-body">
+                    <h3>Buzo Ibiza</h3>
+                    <p>$ UYU 3.590</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card">
+                  <img src="../public/img/prod15_3.jpg" class="card-img-top" alt="Bota Tracto">
+                  <div class="card-body">
+                    <h3>Bota Tracto</h3>
+                    <p>$ UYU 8.200</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card">
+                  <img src="../public/img/prod16.jpg" class="card-img-top" alt="Sandalia Red - Rojo">
+                  <div class="card-body">
+                    <h3>Sandalia Red - Rojo</h3>
+                    <p>$ UYU 6.990</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card">
+                  <img src="../public/img/prod21.jpg" class="card-img-top" alt="Chaleco Amade">
+                  <div class="card-body">
+                    <h3>Chaleco Amade</h3>
+                    <p>$ UYU 3.900</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+        </div>
+      
+        <!-- Controles de navegación del carrusel -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </main>
+
+    <footer>
+      <div class="top-bar">
+        <span>Canjeá tus millas Itaú acá</span>
+        <img src="../public/img/itau.png" alt="Itaú" class="itau-logo">
+      </div>
+
+      <div class="social-footer">
+        <ul>
+          <li><a href=""><i class="fa-brands fa-facebook"></i></a></li>
+          <li><a href=""><i class="fa-brands fa-square-instagram"></i></a></li>
+        </ul>
+      </div>
+
+      <div class="footer-content">
+        <div class="column clm-nosotros">
+          <div class="hdr">
+            <div class="tit">NOSOTROS</div>
+          </div>
+          <ul>
+              <li><a href="#">Empresa</a></li>
+              <li><a href="#">Locales</a></li>
+              <li><a href="#">Trabaja con nosotros</a></li>
+          </ul>
+        </div>
+        <div class="column clm-cuenta">
+          <div class="hdr">
+            <div class="tit">CUENTA</div>
+          </div>
+          <ul>
+              <li><a href="#">Mi cuenta</a></li>
+              <li><a href="#">Mis compras</a></li>
+              <li><a href="#">Mis direcciones</a></li>
+              <li><a href="#">Wish List</a></li>
+          </ul>
+        </div>
+        <div class="column clm-compra">
+          <div class="hdr">
+            <div class="tit">COMPRA</div>
+          </div>
+          <ul>
+              <li><a href="#">Cómo comprar</a></li>
+              <li><a href="#">Envíos y devoluciones</a></li>
+              <li><a href="#">Preguntas frecuentes</a></li>
+          </ul>
+        </div>
+        <div class="column clm-newsletter">
+          <div class="hdr">
+            <div class="tit">SUMATE A NUESTRO NEWSLETTER</div>
+          </div>
+          <form action="">
+            <input type="email" placeholder="Ingresa tu e-mail" required>
+            <button type="submit" id="btn-submit">SUSCRIBIRME</button>
+          </form>
+        </div>
+      </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>

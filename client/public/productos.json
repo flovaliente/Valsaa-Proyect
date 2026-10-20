@@ -1,0 +1,21 @@
+[
+    {"id": 1, "name": "Camisa Mango", "price": 2100, "category": "Camisa", "img": "prod1.jpg", "code": "CAM-MGO-122"},
+    {"id": 2, "name": "Pantalon Hanna", "price": 3200, "category": "Pantalon", "img": "prod2.jpg", "code": "PANT-HAN-656"},
+    {"id": 3, "name": "Campera Nala", "price": 3600, "category": "Campera", "img": "prod3.jpg", "code": "CAMP-NAL-542"},
+    {"id": 4, "name": "Blusa Flowers", "price": 2800, "category": "Blusa", "img": "prod4.jpg", "code": "BL-FL-021"},
+    {"id": 5, "name": "Camisa Colors", "price": 3250, "category": "Camisa", "img": "prod5.jpg", "code": "CAM-CO-421"},
+    {"id": 6, "name": "Red Brisa", "price": 3450, "category": "Red", "img": "prod6.jpg", "code": "RED-BR-142"},
+    {"id": 7, "name": "Pantalon Leah", "price": 4500, "category": "Pantalon", "img": "prod7.jpg", "code": "PANT-LE-478"},
+    {"id": 8, "name": "Jean Cava", "price": 3900, "category": "Pantalon", "img": "prod8.jpg", "code": "JN-CAV-254"},
+    {"id": 9, "name": "Vestido Shan", "price": 8100, "category": "Vestido", "img": "prod9.jpg", "code": "VEST-SH-458"},
+    {"id": 10, "name": "Vestido Lio", "price": 7650, "category": "Vestido", "img": "prod10.jpg", "code": "VEST-LIO-422"},
+    {"id": 11, "name": "Chaleco Amade", "price": 3900, "category": "Chaleco", "img": "prod21.jpg", "code": "CH-AMA-685"},
+    {"id": 12, "name": "Buzo Ibiza", "price": 3590, "category": "Buzo", "img": "prod22.jpg", "code": "BZ-IBI-157"},
+    {"id": 13, "name": "Pollera Alma", "price": 2990, "category": "Pollera", "img": "prod23.jpg", "code": "POLL-ALM-758"},
+    {"id": 14, "name": "Pantalon Chick", "price": 4200, "category": "Pantalon", "img": "prod25.jpg", "code": "PANT-CHI-365"},
+    {"id": 15, "name": "Bermuda Golden", "price": 4550, "category": "Pantalon", "img": "prod11.jpg", "code": "BER-GOL-769"},
+    {"id": 16, "name": "Bota Tracto", "price": 8200, "category": "Calzado", "img": "prod13.jpg", "code": "BO-TRAC-357"},
+    {"id": 17, "name": "Bota Flanco", "price": 9100, "category": "Calzado", "img": "prod24.jpg", "code": "BO-FL-985"},
+    {"id": 18, "name": "Sandalia Red - Rojo", "price": 6990, "category": "Calzado", "img": "prod16.jpg", "code": "SAN-RED-879"},
+    {"id": 19, "name": "Sandalia Red - Marron", "price": 6990, "category": "Calzado", "img": "prod17.jpg", "code": "SAN-RED-880"}
+]
