@@ -1,6 +1,5 @@
-import React from 'react';
 import { Link, Navigate, useLocation } from 'react-router-dom';
-import '../cart/cart.css';
+import { formatPrice } from '../../utils/format';
 
 // Pantalla de confirmación después de comprar. Recibe el ticket por el state de la navegación.
 const OrderSuccess = () => {
@@ -14,12 +13,12 @@ const OrderSuccess = () => {
 
     return (
         <div className="cart-container">
-            <div className="cart-details cart-empty">
+            <div className="cart-data cart-details cart-empty">
                 <h2>¡GRACIAS POR TU COMPRA!</h2>
                 {ticket.amount > 0 ? (
                     <>
                         <p>Tu número de orden es <strong>{ticket.code}</strong>.</p>
-                        <p>Total: $ UYU {ticket.amount}</p>
+                        <p>Total: $ UYU {formatPrice(ticket.amount)}</p>
                     </>
                 ) : (
                     <p>No se pudo procesar ningún producto por falta de stock.</p>
@@ -30,7 +29,7 @@ const OrderSuccess = () => {
                         {' '}<Link to="/cart">Ver carrito</Link>
                     </p>
                 )}
-                <Link to="/">Seguir comprando</Link>
+                <Link to="/shop" className="btn btn-secondary">SEGUIR COMPRANDO</Link>
             </div>
         </div>
     );

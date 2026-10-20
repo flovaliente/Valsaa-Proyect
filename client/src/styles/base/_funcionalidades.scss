@@ -1,0 +1,16 @@
+
+/* LISTAS */
+$font-color: #000, #222222, #666, #ffffff, #999999, #f36f21;
+$font-color-hover: #595959, #ffffff;
+
+/* CONSTANTES PARA OPERACIONES */
+
+
+
+
+/* MIXIN*/
+@mixin flex ($flex, $justify, $align){
+    display: $flex;
+    justify-content: $justify;
+    align-items: $align;
+}

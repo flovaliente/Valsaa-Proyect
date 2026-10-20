@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { ShopContext } from '../../context/ShopContext.jsx';
 import { useAuth } from '../../context/AuthContext.jsx';
 import { checkout } from '../../api/cart.js';
 import { productImage } from '../../api/products.js';
-import './cart.css';
+import { formatPrice } from '../../utils/format.js';
 
 const Cart = () =>{
     const { lista, setLista, totalPrice, updateQuantity, removeFromList } = useContext(ShopContext);
@@ -14,6 +12,8 @@ const Cart = () =>{
     const [ processing, setProcessing ] = useState(false);
     const [ error, setError ] = useState(null);
     const navigate = useNavigate();
+
+    const total = totalPrice(lista);
 
     const finishPurchase = async () =>{
         // Sin sesión: primero login, y después vuelve acá
@@ -43,64 +43,96 @@ const Cart = () =>{
     if (lista.length === 0) {
         return (
             <div className="cart-container">
-                <div className="cart-details cart-empty">
+                <div className="cart-data cart-details cart-empty">
                     <h2>DETALLE DEL PEDIDO</h2>
                     <p>Tu carrito está vacío.</p>
-                    <Link to="/">Ver productos</Link>
+                    <Link to="/shop" className="btn btn-secondary">VER PRODUCTOS</Link>
                 </div>
             </div>
         )
     }
 
     return (
-        <div className="cart-container">
-            <div className="cart-details">
-                <h2>DETALLE DEL PEDIDO</h2>
-                <div className="cart-account">
+        <>
+            <div className="cart-container">
+                <div className="cart-data fact-data">
+                    <h2>DATOS DE LA CUENTA</h2>
                     {user ? (
-                        <>
-                            <p>{user.email}</p>
-                            <button className="link-button" onClick={logout}>Cambiar cuenta</button>
-                        </>
+                        <ul className="cart-items">
+                            <li className="cart-item">
+                                <span className="tit">Nombre:</span>
+                                <span className="val">{user.firstName}</span>
+                            </li>
+                            <li className="cart-item">
+                                <span className="tit">Email:</span>
+                                <span className="val">{user.email}</span>
+                            </li>
+                        </ul>
                     ) : (
-                        <p>Vas a poder ingresar o crear tu cuenta al finalizar la compra.</p>
+                        <p className="cart-guest">
+                            Vas a poder <Link to="/login" state={{ from: '/cart' }}>ingresar</Link> o crear tu cuenta al finalizar la compra.
+                        </p>
                     )}
                 </div>
 
-                <ul className="cart-items">
-                    {lista.map((product) =>(
-                        <li key={product._id} className="cart-item">
-                            <div className="cart-item-info">
-                                <img src={productImage(product)} alt={product.title} className="cart-item-img" />
-                                <div className="cart-item-description">
-                                    <h3>{product.title}</h3>
-                                    <p className="product-code">Art: {product.code}</p>
+                <div className="cart-data cart-details">
+                    <h2>DETALLE DEL PEDIDO</h2>
+                    {user && (
+                        <div className="cart-account">
+                            <p>{user.email}</p>
+                            <button className="link-button" onClick={logout}>Cambiar cuenta</button>
+                        </div>
+                    )}
+                    <ul className="cart-items">
+                        {lista.map((product) =>(
+                            <li key={product._id} className="cart-item">
+                                <div className="cart-item-info">
+                                    <img src={productImage(product)} alt={product.title} className="cart-item-img" />
+                                    <div className="cart-item-description">
+                                        <h3>{product.title}</h3>
+                                        <span>Art: {product.code}</span>
+                                    </div>
+                                </div>
+                                <div className="cart-item-quantity">
+                                    <button className="quantity-btn" aria-label="Restar uno" onClick={() => updateQuantity(product._id, product.quantity - 1)}>-</button>
+                                    <span>{product.quantity}</span>
+                                    <button className="quantity-btn" aria-label="Sumar uno" onClick={() => updateQuantity(product._id, product.quantity + 1)}>+</button>
+                                </div>
+
+                                <div className="cart-item-price">
+                                    <span className="sim">$ UYU </span>
+                                    <span className="amount">{formatPrice(product.price * product.quantity)}</span>
+                                    <button className="link-button" aria-label={`Quitar ${product.title}`} onClick={() => removeFromList(product._id)}>
+                                        <i className="fa-regular fa-trash-can"></i>
+                                    </button>
+                                </div>
+                            </li>
+                        ))}
+                        <li className="total-fila">
+                            <div className="imp-tot">
+                                <span>Importe total:</span>
+                                <div>
+                                    <span className="sim">$ UYU </span>
+                                    <span className="amount">{formatPrice(total)}</span>
                                 </div>
                             </div>
-                            <div className="cart-item-quantity">
-                                <button className="quantity-btn" aria-label="Restar uno" onClick={() => updateQuantity(product._id, product.quantity - 1)}>-</button>
-                                    <span>{product.quantity}</span>
-                                <button className="quantity-btn" aria-label="Sumar uno" onClick={() => updateQuantity(product._id, product.quantity + 1)}>+</button>
-                            </div>
-
-                            <p>$ UYU {product.price * product.quantity}</p>
-
-                            <button className="link-button" aria-label={`Quitar ${product.title}`} onClick={() => removeFromList(product._id)}>
-                                <DeleteOutlineIcon fontSize="small" />
-                            </button>
                         </li>
-                    ))}
-                </ul>
-
-                <div className="cart-summary">
-                    <p className="cart-total">Total: $ UYU {totalPrice(lista)}</p>
+                    </ul>
                     {error && <p className="cart-error">{error}</p>}
-                    <button className="btn btn-secondary" onClick={finishPurchase} disabled={processing}>
-                        {processing ? 'Procesando...' : 'Finalizar compra'}
-                    </button>
                 </div>
             </div>
-        </div>
+
+            <div className="cart-actions">
+                <Link to="/shop" className="back-btn"><i className="fa-solid fa-arrow-left"></i>SEGUIR COMPRANDO</Link>
+                <div>
+                    <span className="sim">$ UYU </span>
+                    <span className="amount">{formatPrice(total)}</span>
+                </div>
+                <button className="continue-btn" onClick={finishPurchase} disabled={processing}>
+                    {processing ? 'PROCESANDO...' : 'FINALIZAR COMPRA'}<i className="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </>
     )
 }
 

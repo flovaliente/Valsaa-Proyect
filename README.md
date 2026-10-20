@@ -8,7 +8,7 @@ una sola aplicación.
 
 ```
 valsaa/
-├── client/                 # Frontend: React 19 + Vite + MUI
+├── client/                 # Frontend: React 19 + Vite + Bootstrap + SCSS
 ├── server/                 # API: Node + Express + MongoDB
 └── legacy/sitio-estatico/  # Sitio original en HTML/SCSS (referencia de diseño, se va a portar a React)
 ```
@@ -42,7 +42,7 @@ npm run dev
 - [x] Unificar los tres proyectos en un solo repositorio
 - [x] Conectar el client con la API del server (reemplazar Firebase)
 - [x] Unificar el modelo de producto y el catálogo
-- [ ] Portar el diseño del sitio estático a React
+- [x] Portar el diseño del sitio estático a React
 - [ ] Corregir problemas de seguridad (secretos en el código, rutas sin autorización)
 - [ ] Migrar a TypeScript
 - [ ] Deploy (client + server + MongoDB Atlas)

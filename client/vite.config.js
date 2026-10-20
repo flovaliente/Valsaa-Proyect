@@ -8,10 +8,16 @@ const SERVER_URL = 'http://localhost:8080'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  css: {
+    preprocessorOptions: {
+      // Los estilos vienen del sitio original y usan @import; se migrarán a @use más adelante
+      scss: { silenceDeprecations: ['import', 'global-builtin'] },
+    },
+  },
   server: {
     proxy: {
       '/api': SERVER_URL,
-      '/img': SERVER_URL,
+      '/img/products': SERVER_URL,
     },
   },
 })

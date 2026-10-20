@@ -1,0 +1,185 @@
+/* Estilos que no existían en el sitio estático y se agregaron al pasarlo a React:
+   estados de carga, filtro por categoría, contador del carrito, login/registro, etc. */
+
+/*---ESTADOS---*/
+.status-message {
+    margin: 60px 16px;
+    text-align: center;
+    color: nth($font-color, 3);
+}
+
+.link-button {
+    background: none;
+    border: none;
+    padding: 0;
+    color: inherit;
+    font: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/*---HEADER---*/
+header nav .container-fluid .nav-bar-icons {
+    z-index: 1; // queda por encima del logo, que está posicionado en absoluto
+    .cart-icon {
+        position: relative;
+    }
+    .cart-count {
+        position: absolute;
+        top: -8px;
+        right: -12px;
+        min-width: 16px;
+        height: 16px;
+        padding: 0 4px;
+        border-radius: 8px;
+        background-color: nth($font-color, 1);
+        color: nth($font-color, 4);
+        font-size: 10px;
+        line-height: 16px;
+        text-align: center;
+    }
+    .dropdown-menu {
+        font-size: 13px;
+    }
+}
+
+/*---FILTRO POR CATEGORÍA---*/
+.category-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    margin: 0 25px 15px;
+    font-size: 13px;
+    a.active {
+        font-weight: bold;
+        text-decoration: underline;
+    }
+}
+
+/*---CARRUSEL---*/
+.carousel .card {
+    display: block;
+    color: inherit;
+}
+
+/*---PRODUCTO---*/
+.product-details {
+    .added-message,
+    .out-of-stock {
+        font-size: 13px;
+        margin-top: 10px;
+    }
+    .out-of-stock {
+        color: #b00020;
+    }
+}
+.product-images .thumbnails img {
+    cursor: pointer;
+}
+
+/*---CARRITO---*/
+.cart-container {
+    .cart-details {
+        height: auto; // el original tenía alto fijo y se desbordaba con muchos productos
+        min-height: 0;
+    }
+    .fact-data {
+        height: auto;
+        min-height: 150px;
+        .cart-guest {
+            font-size: 13px;
+            padding: 15px;
+            a {
+                text-decoration: underline;
+            }
+        }
+    }
+    .cart-item-price .link-button {
+        text-decoration: none;
+        margin-left: 5px;
+        i {
+            font-size: 12px;
+        }
+    }
+    .cart-error {
+        font-size: 13px;
+        color: #b00020;
+        padding: 0 15px 15px;
+    }
+    .cart-empty {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding-bottom: 20px;
+        min-height: 0;
+        > :not(h2) {
+            margin: 0 15px;
+            font-size: 14px;
+        }
+    }
+}
+
+.cart-actions .continue-btn {
+    background: none;
+    color: nth($font-color, 1);
+    padding: 15px 30px;
+    font-weight: 700;
+    font-size: 13px;
+    font-family: "Montserrat", sans-serif;
+    border: 0.1px solid rgb(219, 219, 219);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    &:hover {
+        background-color: #f0f0f0;
+    }
+    &:disabled {
+        cursor: wait;
+        opacity: 0.6;
+    }
+    .fa-arrow-right {
+        margin-left: 6px;
+    }
+}
+
+/*---LOGIN / REGISTRO---*/
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+    max-width: 420px;
+    min-height: 0 !important;
+    padding-bottom: 20px;
+    h2 {
+        margin-bottom: 12px;
+    }
+    label, input, button, p {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    label {
+        font-size: 13px;
+        color: nth($font-color, 1);
+    }
+    input {
+        padding: 8px;
+        border: 1px solid rgb(222, 222, 222);
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+    button {
+        margin-top: 8px;
+        padding: 10px;
+    }
+    .auth-hint, .auth-switch {
+        font-size: 13px;
+    }
+    .auth-switch a {
+        text-decoration: underline;
+    }
+    .auth-error {
+        font-size: 13px;
+        color: #b00020;
+    }
+}
