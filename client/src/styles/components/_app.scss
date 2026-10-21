@@ -79,6 +79,7 @@ header nav .container-fluid .nav-bar-icons {
 
 /*---CARRITO---*/
 .cart-container {
+    padding-bottom: 130px; // deja lugar para la barra fija de abajo (en mobile ocupa dos filas)
     .cart-details {
         height: auto; // el original tenía alto fijo y se desbordaba con muchos productos
         min-height: 0;
