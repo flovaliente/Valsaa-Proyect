@@ -16,6 +16,7 @@ import indexRouter from './routers/indexRouter.js';//
 import chatRouter from './routers/messageRouter.js';//
 import userRouter from './routers/userRouter.js';//
 import ticketRouter from './routers/ticketRouter.js';
+import orderRouter from './routers/orderRouter.js';
 import initializatePassport from './config/passportConfig.js';
 import  __dirname  from './utils/constUtil.js';
 import { addLogger } from './utils/logger.js';
@@ -88,6 +89,7 @@ app.use('/api/products', productsRouter);//
 app.use('/api/carts', cartRouter);//
 app.use('/api/message', chatRouter);//
 app.use('/api/ticket', ticketRouter);
+app.use('/api/orders', orderRouter);
 
 //Swagger
 const swaggerOptions = {

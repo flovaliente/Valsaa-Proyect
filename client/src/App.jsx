@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
+import ScrollToTop from './components/layout/ScrollToTop';
 import Home from './components/home/Home';
 import ItemListContainer from './components/itemListContainer/ItemListContainer';
 import ItemDetailContainer from './components/itemDetailContainer/ItemDetailContainer';
@@ -9,6 +10,7 @@ import Locales from './components/locales/Locales';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import OrderSuccess from './components/orderSuccess/OrderSuccess';
+import Checkout from './components/checkout/Checkout';
 import { ShopComponentContext } from './context/ShopContext';
 import { AuthProvider } from './context/AuthContext';
 
@@ -26,6 +28,7 @@ function App() {
     <AuthProvider>
       <ShopComponentContext>
         <BrowserRouter>
+          <ScrollToTop />
           <Header />
           <main>
             <Routes>
@@ -37,6 +40,7 @@ function App() {
               <Route path='/locales' element={<Locales />} />
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
+              <Route path='/checkout' element={<Checkout />} />
               <Route path='/order' element={<OrderSuccess />} />
             </Routes>
           </main>

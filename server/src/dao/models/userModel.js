@@ -9,6 +9,14 @@ const userSchema = new mongoose.Schema({
     email: { type: String, required: true, unique: true },
     age: { type: Number, default: 18 },
     address: { type: String },
+    // Datos que se guardan al comprar, para completar el checkout la próxima vez
+    phone: { type: String },
+    shippingAddress: {
+        street: { type: String },
+        apartment: { type: String },
+        city: { type: String },
+        department: { type: String },
+    },
     password: { type: String, required: true },
     role: { type: String, enum: ["Admin", "User", "Premium"], default: "User" },
     cart: { type: mongoose.Schema.Types.ObjectId, ref: "carts" },

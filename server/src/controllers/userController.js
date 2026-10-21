@@ -137,6 +137,23 @@ const current = (req, res) =>{
     });
 }
 
+// Datos del usuario para completar el checkout (los del token no incluyen teléfono ni dirección)
+const profile = async (req, res) =>{
+    try {
+        const user = await userService.getUser(req.user.user._id);
+        if (!user) {
+            return res.status(404).send({ status: 'error', message: 'User not found.' });
+        }
+        const { firstName, lastName = '', email, phone = '', shippingAddress } = user;
+        res.send({
+            status: 'success',
+            payload: { firstName, lastName, email, phone, shippingAddress: shippingAddress ?? null }
+        });
+    } catch (error) {
+        res.status(500).send({ status: 'error', message: 'Error fetching profile.' });
+    }
+}
+
 //Preguntar si deberia actualizar el token o no, porque no me lo actualiza bien creo
 const switchRole = async (req, res) =>{
     try {
@@ -296,6 +313,7 @@ export default {
     github,
     githubcallback,
     current,
+    profile,
     switchRole,
     uploadDocuments,
     updateAddress,
